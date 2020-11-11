@@ -13,10 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import graphics.XMLUtils;
-import graphics.layout.Styles;
 
 public class Components {   
-    public static ArrayList<Styles> styles = new ArrayList<>();
    public static void getComponent(XMLUtils xmlReader, Element root, JPanel panel){
         ArrayList<JComponent> components = new ArrayList<>();
         NodeList children = xmlReader.getChildren(root);
@@ -43,7 +41,6 @@ public class Components {
                 getComponent(xmlReader, (Element)children.item(i), newPanel);
                 components.add(newPanel);
             }
-            styles.add(new Styles());
         }
         for(int i = 0; i < components.size(); i++){
             panel.add(components.get(i));
