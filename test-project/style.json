@@ -1,0 +1,15 @@
+{
+    "column":{
+        "width":"33%",
+        "height":"100%"
+    },
+    "row":{
+        "height":"100%",
+        "width":"33%"
+    },
+    "square":{
+        "height":"100%",
+        "width":"100%",
+        "border": "2px"
+    }
+}
