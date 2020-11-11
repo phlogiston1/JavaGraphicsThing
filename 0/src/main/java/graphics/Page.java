@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,11 +13,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
-public class concepty {
-    static ArrayList<JComponent> components = new ArrayList<>();
-    public static void getElements(XMLUtils xmlReader, Element root, ArrayList<JComponent> components, JPanel panel){
-
+public class Page {
+    JPanel page;
+    public Page(String jsonURL) throws ParserConfigurationException, SAXException, IOException {
+        page = new JPanel();
+        XMLUtils xmlReader = new XMLUtils(jsonURL);
+        getElements(xmlReader, xmlReader.parsed.getDocumentElement(), page);
+    } 
+   public static void getElements(XMLUtils xmlReader, Element root, JPanel panel){
+        ArrayList<JComponent> components = new ArrayList<>();
         NodeList children = xmlReader.getChildren(root);
         for(int i = 0; i < children.getLength(); i++){
             if(children.item(i).getNodeName() == "button"){
@@ -30,7 +32,7 @@ public class concepty {
             }
             if(children.item(i).getNodeName() == "panel"){
                 JPanel newPanel = new JPanel();
-                getElements(xmlReader, (Element)children.item(i), new ArrayList<>(), newPanel);
+                getElements(xmlReader, (Element)children.item(i), newPanel);
                 components.add(newPanel);
             }
             
@@ -40,17 +42,4 @@ public class concepty {
             panel.add(components.get(i));
         }
     }
-    public static void main(String args[]) throws ParserConfigurationException, SAXException, IOException {
-
-
-        Page xmlReader = new Page("C:/Users/Benham/Sean/programming/idkwutdiswillbecalled/0/src/main/java/graphics/test.xml");
-        JFrame frame = new JFrame("waw");
-        frame.setContentPane(xmlReader.page);
-        frame.setVisible(true);
-        frame.setLayout(new GridLayout(3,3));
-        
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }    
 }
