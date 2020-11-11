@@ -1,7 +1,7 @@
 <rood>
-<panel><button>somethin else</button></panel>
-<button>testBTN</button>
-<button>otherbutton</button>
-<button>waw</button>
-<label>labeli</label>
+<button top="5" left="5">waw</button>
+<panel layout="grid" rows="2" cols="1">
+    <panel><button>morewaw</button><check>morewaw</check></panel>
+    <panel><button>somuchwaw</button><check>somuchwaw</check></panel>
+</panel>
 </rood>
