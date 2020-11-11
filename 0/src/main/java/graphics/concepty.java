@@ -28,6 +28,12 @@ public class concepty {
             if(children.item(i).getNodeName() == "label"){
                 components.add(new JLabel(children.item(i).getTextContent()));
             }
+            if(children.item(i).getNodeName() == "panel"){
+                JPanel newPanel = new JPanel();
+                getElements(xmlReader, (Element)children.item(i), new ArrayList<>(), newPanel);
+                components.add(newPanel);
+            }
+            
         }
         for(int i = 0; i < components.size(); i++){
             System.out.println(i);
